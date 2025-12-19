@@ -1,83 +1,27 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>App nội bộ</title>
+  <meta charset="UTF-8">
+  <title>App Nội Bộ</title>
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
-<style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f2f2f7;
-  margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 6px;
-}
-
-.sub {
-  text-align: center;
-  font-size: 13px;
-  color: #666;
-}
-
-.menu {
-  margin-top: 24px;
-  display: grid;
-  gap: 14px;
-}
-
-.item {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 18px;
-  text-decoration: none;
-  color: #000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 18px;
-}
-
-.icon {
-  font-size: 28px;
-}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>APP NỘI BỘ</h1>
-<div class="sub">Chọn chức năng</div>
+  <div class="app">
+    <h1>APP NỘI BỘ</h1>
+    <p class="sub">Chọn chức năng</p>
 
-<div class="menu">
-  <a class="item" href="bang-gia-a5x2.html">
-  <div class="icon">🖨️</div>
-  <div>Bảng giá A5 x2</div>
-</a>
-  
-  <a class="item" href="bang-gia.html">
-    <div class="icon">📋</div>
-    <div>Bảng giá</div>
-  </a>
-
-  <a class="item" href="qr.html">
-    <div class="icon">🔳</div>
-    <div>QR chuyển khoản</div>
-  </a>
-
-  <a class="item" href="ghi-chu.html">
-    <div class="icon">📝</div>
-    <div>Ghi chú nội bộ</div>
-  </a>
-</div>
+    <div class="menu">
+      <a href="a5x2.html" class="item">🖨️ Bảng giá A5 x2</a>
+      <a href="bang-gia.html" class="item">📋 Bảng giá</a>
+      <a href="qr.html" class="item">⬛ QR chuyển khoản</a>
+      <a href="note.html" class="item">📝 Ghi chú nội bộ</a>
+    </div>
+  </div>
 
 </body>
 </html>
