@@ -2,295 +2,77 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Bảng Giá A5 x2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App nội bộ</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <style>
-@page {
-    size: A4 landscape;
-    margin: 0;
-}
-
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.page {
-    width: 297mm;
-    height: 210mm;
-    display: flex;
-    page-break-after: always;
-    page-break-inside: avoid;
-}
-
-.card {
-    width: 148.5mm;
-    height: 208mm;
-    padding: 5mm;
-    box-sizing: border-box;
-    page-break-inside: avoid;
-}
-
-/* ĐƯỜNG CHIA GIỮA – BORDER THẬT (IN 100%) */
-.card.left {
-    border-right: 2px solid #000;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f2f2f7;
+  margin: 0;
+  padding: 20px;
 }
 
 h1 {
-    text-align: center;
-    font-size: 36px;
-    margin: 4mm 0 6mm;
+  text-align: center;
+  margin-bottom: 6px;
 }
 
-.controls {
-    text-align: center;
-    margin-bottom: 4mm;
+.sub {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
 }
 
-.controls button {
-    font-size: 14px;
-    padding: 4px 10px;
+.menu {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 22px;
+.item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 18px;
 }
 
-table, th, td {
-    border: 1px solid #000;
-}
-
-th {
-    background: #eee;
-    padding: 10px 6px;
-    font-size: 23px;
-}
-
-td {
-    padding: 10px 6px;
-    text-align: center;
-}
-
-tbody tr {
-    height: calc((208mm - 80mm) / 12);
-}
-
-.price-header {
-    line-height: 1.1;
-}
-
-.remove-col {
-    width: 34px;
-}
-
-.remove-btn {
-    cursor: pointer;
-    color: red;
-    font-weight: bold;
-}
-
-/* DÒNG THỜI GIAN */
-.update-time {
-    margin-top: 4mm;
-    text-align: right;
-    font-size: 12px;
-    font-style: italic;
-}
-
-/* ẨN KHI IN */
-@media print {
-    .controls,
-    .print-btn,
-    .remove-col,
-    .remove-btn {
-        display: none !important;
-    }
-}
-
-.print-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 18px;
-    padding: 10px 20px;
+.icon {
+  font-size: 28px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<h1>APP NỘI BỘ</h1>
+<div class="sub">Chọn chức năng</div>
 
-    <!-- BẢNG TRÁI -->
-    <div class="card left" data-id="1">
-        <h1 contenteditable="true" onfocus="selectAll(this)">BẢNG GIÁ SẢN PHẨM</h1>
+<div class="menu">
+  <a class="item" href="bang-gia.html">
+    <div class="icon">📋</div>
+    <div>Bảng giá</div>
+  </a>
 
-        <div class="controls">
-            <button onclick="addRow(1)">➕ Thêm dòng</button>
-        </div>
+  <a class="item" href="qr.html">
+    <div class="icon">🔳</div>
+    <div>QR chuyển khoản</div>
+  </a>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên sản phẩm</th>
-                    <th class="price-header">Giá bán<br>(đ/Kg)</th>
-                    <th class="remove-col">X</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <div class="update-time">
-            Đã cập nhật vào lúc: <span class="time-text"></span>
-        </div>
-    </div>
-
-    <!-- BẢNG PHẢI -->
-    <div class="card" data-id="2">
-        <h1 contenteditable="true" onfocus="selectAll(this)">BẢNG GIÁ SẢN PHẨM</h1>
-
-        <div class="controls">
-            <button onclick="addRow(2)">➕ Thêm dòng</button>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên sản phẩm</th>
-                    <th class="price-header">Giá bán<br>(đ/Kg)</th>
-                    <th class="remove-col">X</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <div class="update-time">
-            Đã cập nhật vào lúc: <span class="time-text"></span>
-        </div>
-    </div>
-
+  <a class="item" href="ghi-chu.html">
+    <div class="icon">📝</div>
+    <div>Ghi chú nội bộ</div>
+  </a>
 </div>
-
-<button class="print-btn" onclick="window.print()">🖨️ In A4</button>
-
-<script>
-function selectAll(el) {
-    const r = document.createRange();
-    r.selectNodeContents(el);
-    const s = window.getSelection();
-    s.removeAllRanges();
-    s.addRange(r);
-}
-
-function formatPrice(el) {
-    let v = el.innerText.replace(/\D/g, '');
-    el.innerText = v ? Number(v).toLocaleString('vi-VN') : '';
-    saveData();
-}
-
-function addRow(id) {
-    const card = document.querySelector('.card[data-id="' + id + '"]');
-    const tbody = card.querySelector('tbody');
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-        <td class="col-name" contenteditable="true" onfocus="selectAll(this)">Tên sản phẩm</td>
-        <td class="col-price" contenteditable="true"
-            onfocus="selectAll(this)"
-            onblur="formatPrice(this)">0</td>
-        <td class="remove-btn" onclick="this.parentElement.remove(); saveData()">✖</td>
-    `;
-    tbody.appendChild(tr);
-    saveData();
-}
-
-function saveData() {
-    const data = [];
-    document.querySelectorAll('.card').forEach(card => {
-        const rows = [];
-        card.querySelectorAll('tbody tr').forEach(tr => {
-            rows.push({
-                name: tr.querySelector('.col-name').innerText,
-                price: tr.querySelector('.col-price').innerText
-            });
-        });
-        data.push({
-            title: card.querySelector('h1').innerText,
-            rows
-        });
-    });
-    localStorage.setItem('bangGiaData', JSON.stringify(data));
-}
-
-function loadData() {
-    const data = JSON.parse(localStorage.getItem('bangGiaData'));
-    if (!data) {
-        addRow(1);
-        addRow(2);
-        return;
-    }
-
-    document.querySelectorAll('.card').forEach((card, i) => {
-        card.querySelector('h1').innerText = data[i].title;
-        const tbody = card.querySelector('tbody');
-        tbody.innerHTML = '';
-        data[i].rows.forEach(r => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td class="col-name" contenteditable="true" onfocus="selectAll(this)">${r.name}</td>
-                <td class="col-price" contenteditable="true"
-                    onfocus="selectAll(this)"
-                    onblur="formatPrice(this)">${r.price}</td>
-                <td class="remove-btn" onclick="this.parentElement.remove(); saveData()">✖</td>
-            `;
-            tbody.appendChild(tr);
-        });
-    });
-}
-
-function updatePrintTime() {
-    const now = new Date();
-    const time =
-        now.getHours().toString().padStart(2, '0') + ':' +
-        now.getMinutes().toString().padStart(2, '0') + ' - ' +
-        now.getDate().toString().padStart(2, '0') + '/' +
-        (now.getMonth() + 1).toString().padStart(2, '0') + '/' +
-        now.getFullYear();
-
-    document.querySelectorAll('.time-text').forEach(el => {
-        el.innerText = time;
-    });
-}
-
-window.onbeforeprint = updatePrintTime;
-document.addEventListener('input', saveData);
-
-document.addEventListener('keydown', e => {
-    const td = document.activeElement;
-    if (!td || td.tagName !== 'TD') return;
-
-    const tr = td.parentElement;
-    const tbody = tr.parentElement;
-    const col = [...tr.children].indexOf(td);
-    const row = [...tbody.children].indexOf(tr);
-
-    let t = null;
-    if (e.key === 'ArrowRight') t = tr.children[col + 1];
-    if (e.key === 'ArrowLeft') t = tr.children[col - 1];
-    if (e.key === 'ArrowDown') t = tbody.children[row + 1]?.children[col];
-    if (e.key === 'ArrowUp') t = tbody.children[row - 1]?.children[col];
-    if (e.key === 'Enter') t = tbody.children[row + 1]?.children[col];
-
-    if (t && t.isContentEditable) {
-        e.preventDefault();
-        t.focus();
-    }
-});
-
-window.onload = loadData;
-</script>
 
 </body>
 </html>
