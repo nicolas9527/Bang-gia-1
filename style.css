@@ -51,3 +51,8 @@ h1 {
 .item:active {
   transform: scale(0.97);
 }
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
